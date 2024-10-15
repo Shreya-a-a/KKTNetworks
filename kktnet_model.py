@@ -18,7 +18,7 @@ def load_data(filename):
     return A_data, b_data, c_data, x_data, lamb_data
 
 # Load the dataset
-A_data, b_data, c_data, x_data, lamb_data = load_data('/path/to/folder/dataset.npz')
+A_data, b_data, c_data, x_data, lamb_data = load_data('dataset.npz')
 
 
 # Model
@@ -187,8 +187,8 @@ for epoch in range(epochs):
     print(f'Epoch {epoch + 1}, Train Loss: {avg_train_loss:.4f}, Validation Loss: {avg_val_loss:.4f}')
 
     if (epoch + 1) % save_interval == 0:
-        model.save(f'/path/to/folder/KKTNetmodel_checkpoint_{epoch + 1:04d}.keras')
+        model.save(f'KKTNetmodel_checkpoint_{epoch + 1:04d}.keras')
         print('Model saved...')
 
-np.save('/path/to/folder/train_loss.npy', np.array(train_losses))
-np.save('/path/to/folder/val_loss.npy', np.array(val_losses))
+np.save('train_loss.npy', np.array(train_losses))
+np.save('val_loss.npy', np.array(val_losses))
