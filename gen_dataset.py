@@ -37,18 +37,15 @@ def generate_dataset(num_samples, m, n):
 
             # Check if the problem is solvable and optimal
             if problem.status == cp.OPTIMAL:
-                # Extract the optimal solution and dual values
+                
                 optimal_solution = x.value
                 dual_solution = [constraint.dual_value for constraint in problem.constraints]
 
-                # Append each parameter to the respective list
                 c_data.append(c)
                 A_data.append(A)
                 b_data.append(b)
                 x_opt.append(optimal_solution)
                 lamb_opt.append(dual_solution)
-
-                # print(f"Generated and solved LP problem {i+1}.")
 
         except cp.SolverError:
             print(f"Problem {i+1} is not solvable, discarding.")
@@ -61,7 +58,7 @@ m = 2
 n = 2
 c_data, A_data, b_data, x_data, lamb_data = generate_dataset(num_samples, m, n)
 
-# Save all arrays to a single .npz file
-np.savez('/content/drive/My Drive/btp/dataset.npz', c=c_data, A=A_data, b=b_data, x=x_data, lamb=lamb_data)
+# Save the dataset
+np.savez('dataset.npz', c=c_data, A=A_data, b=b_data, x=x_data, lamb=lamb_data)
 
 print("\nLP solutions have been saved to 'dataset.npz'.")
